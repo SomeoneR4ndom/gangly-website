@@ -6,3 +6,10 @@ body {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
 
 }
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 250px;
+}
