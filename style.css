@@ -18,7 +18,7 @@ img {
 footer {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   text-align: center;
-  background-color: #333;
+  background-color: rgb(10, 8, 8);
   color: #fff;
   position: fixed;
   height: 50px;
