@@ -1,5 +1,6 @@
 body {
     background-color: lightblue;
+    margin-bottom:60px;
   }
 
 .text {
@@ -19,7 +20,11 @@ footer {
   text-align: center;
   background-color: #333;
   color: #fff;
-  padding: 5px;
-  border-color: #333;
+  position: fixed;
+  height: 50px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
 
 }
