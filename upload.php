@@ -1,31 +1,44 @@
 <?php
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-  echo "Sorry, your file is too large.";
-  $uploadOk = 0;
-}
+$allowedExts = array("jpg", "jpeg", "gif", "png", "mp3", "mp4", "wma");
+$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
-// Allow certain file formats
-if($imageFileType != "mp4" && $imageFileType != "webm") 
-{
-  echo "Sorry, only MP4 and WEBM files are allowed.";
-  $uploadOk = 0;
-}
+if ((($_FILES["file"]["type"] == "video/mp4")
+|| ($_FILES["file"]["type"] == "audio/mp3")
+|| ($_FILES["file"]["type"] == "audio/wma")
+|| ($_FILES["file"]["type"] == "image/pjpeg")
+|| ($_FILES["file"]["type"] == "image/gif")
+|| ($_FILES["file"]["type"] == "image/jpeg"))
 
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-  echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-  } else {
-    echo "Sorry, there was an error uploading your file.";
+&& ($_FILES["file"]["size"] < 20000)
+&& in_array($extension, $allowedExts))
+
+  {
+  if ($_FILES["file"]["error"] > 0)
+    {
+    echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+    }
+  else
+    {
+    echo "Upload: " . $_FILES["file"]["name"] . "<br />";
+    echo "Type: " . $_FILES["file"]["type"] . "<br />";
+    echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
+    echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
+
+    if (file_exists("upload/" . $_FILES["file"]["name"]))
+      {
+      echo $_FILES["file"]["name"] . " already exists. ";
+      }
+    else
+      {
+      move_uploaded_file($_FILES["file"]["tmp_name"],
+      "upload/" . $_FILES["file"]["name"]);
+      echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
+      }
+    }
   }
-}
+else
+  {
+  echo "Invalid file";
+  }
 ?>

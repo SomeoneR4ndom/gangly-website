@@ -1,15 +1,12 @@
 <html lang="en">
     <body>
         <div class="text">
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                Select video to upload:
-                <input type="file" name="video" id="fileSelect">
-                <input type="submit" name="submit" value="Upload">
+          <form action="upload.php" method="post" enctype="multipart/form-data">
+            <label for="file"><span>Filename:</span></label>
+            <input type="file" name="file" id="file" /> 
+            <br />
+            <input type="submit" name="submit" value="Submit" />
             </form>
-            
-            <ul id="myVideos">
-
-            </ul>
         </div>
         <script>
             function createVideo() {
